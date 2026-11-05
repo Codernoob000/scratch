@@ -18,7 +18,10 @@ export default function Projects(): React.ReactElement {
             const validLinks = project.links.filter((l) => l.url && l.url.trim().length > 0);
 
             return (
-              <article key={project.id} className="project-card">
+              <article
+                key={project.id}
+                className={`project-card${project.golden ? ' golden' : ''}`}
+              >
                 <div className="project-header-line">
                   <span className="project-meta">
                     {project.code}
@@ -62,3 +65,4 @@ export default function Projects(): React.ReactElement {
     </section>
   );
 }
+

@@ -20,3 +20,4 @@ export default function Skills(): React.ReactElement {
     </section>
   );
 }
+

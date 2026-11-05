@@ -1,12 +1,13 @@
 .page-container {
+  width: 100%;
   max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 32px;
+  margin-inline: auto;
+  padding-inline: 32px;
 }
 
 @media (max-width: 768px) {
   .page-container {
-    padding: 0 16px;
+    padding-inline: 16px;
   }
 }
 
@@ -284,6 +285,12 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+@media (min-width: 769px) {
+  .project-card.golden {
+    grid-column: span 2;
+  }
 }
 
 .project-header-line {
