@@ -145,3 +145,4 @@ export default function Ticket(): React.ReactElement {
     </div>
   );
 }
+

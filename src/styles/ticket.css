@@ -5,6 +5,7 @@
 }
 
 .ticket-container {
+  width: 100%;
   background-color: var(--paper-2);
   border: 1px solid var(--ink);
   border-radius: 6px;
@@ -101,14 +102,14 @@
 /* Grid */
 .ticket-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
   padding: 16px;
 }
 
 @media (max-width: 640px) {
   .ticket-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 12px;
   }
 }
@@ -118,6 +119,7 @@
   position: relative;
   height: 132px;
   min-height: 44px;
+  min-width: 0;
   background-color: var(--paper-2);
   border: 1px solid var(--line);
   border-radius: 4px;
@@ -187,16 +189,6 @@
   color: var(--ink-2);
 }
 
-.panel-event {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--ink-2);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 140px;
-}
-
 .panel-title {
   font-family: 'Newsreader Variable', 'Newsreader', Georgia, serif;
   font-size: 18px;
@@ -211,30 +203,28 @@
   }
 }
 
-/* Temporary visual cover for Phase 2 before canvas foil in Phase 3 */
-.panel-cover {
+/* Scratch Foil Canvas */
+.scratch-canvas {
   position: absolute;
   inset: 0;
-  background-color: var(--foil);
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  border-radius: 3px;
+}
+
+/* Locked Overlay for golden panel */
+.panel-lock-cover {
+  position: absolute;
+  inset: 0;
+  background-color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
   border-radius: 3px;
-}
-
-.ticket-panel.golden .panel-cover {
-  background-color: var(--accent);
-}
-
-.panel-cover-code {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--foil-dark);
 }
 
 .panel-lock-label {
@@ -244,12 +234,6 @@
   color: var(--paper);
   text-align: center;
   letter-spacing: 0.04em;
-}
-
-.panel-lock-label.unlocked {
-  color: var(--paper);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 /* Footer Strip */

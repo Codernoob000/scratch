@@ -1,5 +1,6 @@
 import React from 'react';
 import { Project } from '../../content/types';
+import { useScratch } from './useScratch';
 
 interface PanelProps {
   project: Project;
@@ -22,12 +23,20 @@ export default function Panel({
 }: PanelProps): React.ReactElement {
   const isGolden = Boolean(project.golden);
 
+  const canvasRef = useScratch({
+    project,
+    isRevealed,
+    isLocked,
+    onReveal: (id) => {
+      onReveal(id);
+      onSelect(id);
+    },
+  });
+
   const handleClick = () => {
     if (isLocked) return;
-    if (!isRevealed) {
-      onReveal(project.id);
-      onSelect(project.id);
-    } else {
+    // When revealed, clicking opens/reopens the stub
+    if (isRevealed) {
       onSelect(project.id);
     }
   };
@@ -35,11 +44,16 @@ export default function Panel({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      handleClick();
+      if (isLocked) return;
+      if (!isRevealed) {
+        onReveal(project.id);
+        onSelect(project.id);
+      } else {
+        onSelect(project.id);
+      }
     }
   };
 
-  // Determine panel classes
   const classes = [
     'ticket-panel',
     isGolden ? 'golden' : '',
@@ -55,8 +69,8 @@ export default function Panel({
     : isRevealed
     ? `${project.code}: ${project.title}. Revealed. Press to open details.`
     : isGolden
-    ? `Golden panel unlocked. Press to reveal.`
-    : `Panel ${project.code}: Press to reveal.`;
+    ? `Golden panel unlocked. Scratch to reveal.`
+    : `Panel ${project.code}: Scratch or press Enter to reveal.`;
 
   return (
     <button
@@ -68,26 +82,29 @@ export default function Panel({
       aria-disabled={isLocked}
       aria-label={ariaLabel}
     >
-      {/* Content layer visible when revealed */}
+      {/* Content layer */}
       <div className="panel-content" aria-hidden={!isRevealed}>
         <div className="panel-top-row">
           <span className="panel-code">{project.code}</span>
-          {project.event && <span className="panel-event">{project.event}</span>}
         </div>
         <div className="panel-title">{project.title}</div>
       </div>
 
-      {/* Temporary visual cover for unrevealed panels in Phase 2 */}
-      {!isRevealed && (
-        <div className="panel-cover" aria-hidden="true">
-          {isLocked ? (
-            <span className="panel-lock-label">{lockProgressText}</span>
-          ) : isGolden ? (
-            <span className="panel-lock-label unlocked">unlocked</span>
-          ) : (
-            <span className="panel-cover-code">{project.code}</span>
-          )}
+      {/* Locked overlay for golden panel */}
+      {isLocked && (
+        <div className="panel-lock-cover" aria-hidden="true">
+          <span className="panel-lock-label">{lockProgressText}</span>
         </div>
+      )}
+
+      {/* Scratch foil canvas: only present when unlocked and not revealed */}
+      {!isRevealed && !isLocked && (
+        <canvas
+          ref={canvasRef}
+          className="scratch-canvas"
+          style={{ touchAction: 'none' }}
+          aria-hidden="true"
+        />
       )}
     </button>
   );

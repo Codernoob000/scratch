@@ -59,3 +59,4 @@ export default function Stub({ project, onClose }: StubProps): React.ReactElemen
     </aside>
   );
 }
+
