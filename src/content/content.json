@@ -1,0 +1,147 @@
+{
+  "person": {
+    "name": "Gattu Rithvik",
+    "line": "Third-year IT student in Hyderabad. I build LLM tools and write down what broke.",
+    "tagline": "Curiosity to ideas. Ideas to products.",
+    "location": "Hyderabad, India",
+    "college": "B.Tech in Information Technology, Vardhaman College of Engineering",
+    "photo": "/img/rithvik.jpg",
+    "links": {
+      "github": "https://github.com/Codernoob000",
+      "linkedin": "TODO",
+      "email": "TODO",
+      "resume": "/resume.pdf"
+    }
+  },
+  "about": [
+    "I’m a third-year IT student at Vardhaman College of Engineering in Hyderabad. I’ve done ten-plus hackathons, and most of what’s on this page came out of one.",
+    "I like LLM tooling that has to be reliable: prompt testing, agents that explain their decisions, retrieval that cites its sources. I’m less interested in demos that only work once.",
+    "I write down what broke. The ticket above is built that way. Every project has a line about what went wrong, because those lines are where I learned something. I also keep a few short essays on building. The one I keep coming back to: an interesting idea isn’t always a useful one."
+  ],
+  "skills": [
+    { "group": "Languages", "items": ["Python", "TypeScript", "C++ (for DSA)", "SQL"] },
+    { "group": "Backend and data", "items": ["FastAPI", "Node.js", "SQLModel", "SQLite", "MySQL", "Oracle SQL", "MongoDB", "ChromaDB"] },
+    { "group": "LLM work", "items": ["Groq", "Gemini API", "LangChain", "Retrieval (RAG)", "Prompt injection testing", "Agent orchestration"] },
+    { "group": "Frontend", "items": ["React", "Tailwind CSS", "Vanilla JS"] },
+    { "group": "Tooling", "items": ["Git", "GitHub Actions", "Docker"] }
+  ],
+  "ticket": {
+    "title": "Hackathon season 2026",
+    "serial": "No. 0011",
+    "unlockAfter": 5,
+    "hint": "Scratch the ticket. Each panel is something I built. One is hiding."
+  },
+  "projects": [
+    {
+      "id": "promptshield",
+      "code": "01",
+      "title": "PromptShield CI",
+      "event": "",
+      "what": "Safety and regression checks for LLM prompts, run in CI before a prompt ships.",
+      "wrong": "TODO",
+      "stack": ["TypeScript", "Node.js", "Python"],
+      "links": []
+    },
+    {
+      "id": "point-feedback",
+      "code": "02",
+      "title": "POINT.FEEDBACK",
+      "event": "",
+      "what": "On-screen feedback tool. You point at something on a page and your annotation becomes a developer ticket.",
+      "wrong": "TODO",
+      "stack": ["React", "TypeScript", "Tailwind CSS"],
+      "links": []
+    },
+    {
+      "id": "opsbrain",
+      "code": "03",
+      "title": "OpsBrain AI",
+      "event": "ET AI Hackathon 2026",
+      "what": "Knowledge copilot for industrial documents. It gives cited answers, flags compliance gaps, and surfaces patterns across past incidents.",
+      "wrong": "The demo corpus is seven documents. It works end to end, but it isn’t hardened, and I know it.",
+      "stack": ["FastAPI", "Groq", "ChromaDB", "MiniLM embeddings"],
+      "links": []
+    },
+    {
+      "id": "razorpay-recovery",
+      "code": "04",
+      "title": "Payment Recovery Agent",
+      "event": "Razorpay AI Buildathon",
+      "what": "Agent that works out why a subscription payment failed and picks what to do next: retry, offer a discount, send an update link, or escalate to a person.",
+      "wrong": "A multi-cycle simulation showed over a third of a seeded batch stuck in pending_retry forever. Nothing requeued it, and the retry delays in the config weren’t used anywhere. Fixed, and the delays are real now.",
+      "stack": ["Python", "SQLModel", "Pydantic", "Gemini 2.5 Flash", "Docker"],
+      "links": []
+    },
+    {
+      "id": "dejavu",
+      "code": "05",
+      "title": "Déjà Vu",
+      "event": "Hack with Hyderabad 3.0",
+      "what": "Reviews a deploy or config change and answers SHIP, REVIEW or HOLD from the team’s own history. It learns when an engineer overrules it, and marks old lessons stale.",
+      "wrong": "The 65% drop in wrong calls comes from a simulated benchmark with a scripted oracle. It shows the mechanism works. It doesn’t show real-world accuracy.",
+      "stack": ["Python", "FastAPI", "Hindsight memory", "Vanilla JS"],
+      "links": []
+    },
+    {
+      "id": "ripple",
+      "code": "06",
+      "title": "ripple",
+      "event": "OmniRush Frontier Buildathon",
+      "what": "CLI that reads git history, finds files that usually change together, and warns you when one is missing from your diff.",
+      "wrong": "I benchmarked it on the newest 100 commits of three small Python repos: itsdangerous, click and markupsafe. That’s a small sample.",
+      "stack": ["Python", "Git", "GitHub Actions"],
+      "links": [{ "label": "Repo", "url": "https://github.com/Codernoob000/Ripple" }]
+    },
+    {
+      "id": "clausepilot",
+      "code": "07",
+      "title": "ClausePilot",
+      "event": "Hack2skill: AI for Legal Assistance and Access",
+      "what": "Reads a freelance contract, compares each clause with standard ones, flags the risky ones, and drafts counter-messages plus a prep sheet for talking to a lawyer.",
+      "wrong": "The live demo ran through a Cloudflare tunnel from my laptop. Fine for a demo, not a deployment.",
+      "stack": ["Python", "RAG", "Google Stitch UI"],
+      "links": [{ "label": "Repo", "url": "https://github.com/Codernoob000/clausepilot" }]
+    },
+    {
+      "id": "tenderwin",
+      "code": "08",
+      "title": "TenderWin AI",
+      "event": "",
+      "what": "Multi-agent system for answering RFPs. A writer agent drafts each answer and a critic agent reviews it.",
+      "wrong": "TODO",
+      "stack": ["Gemini 2.5 Pro", "pgvector"],
+      "links": []
+    },
+    {
+      "id": "keyframe",
+      "code": "09",
+      "title": "Keyframe",
+      "event": "AI productivity app competition",
+      "what": "Keeps a structured project state across AI chat sessions, writes handoff prompts, and checks new AI-written code against decisions you made earlier.",
+      "wrong": "I restarted the build from scratch and cut the backend and the database. Everything lives in localStorage now.",
+      "stack": ["TypeScript", "localStorage"],
+      "links": []
+    },
+    {
+      "id": "unihack",
+      "code": "10",
+      "title": "Unilog enrichment pipeline",
+      "event": "UniHack",
+      "what": "Turns messy product catalog rows (six input columns) into a structured product record with 252 columns.",
+      "wrong": "I only had three files. The reference tables the solution guide depends on, such as content guidelines, units and the brand master list, were missing.",
+      "stack": ["Python"],
+      "links": []
+    },
+    {
+      "id": "flowsync",
+      "code": "00",
+      "title": "FlowSync, the one I shelved",
+      "event": "ET AI Hackathon 2026",
+      "golden": true,
+      "what": "Started as a Hyderabad traffic-routing demo. I turned it into an energy-corridor risk tool: live news signals, a scenario modeller for refinery run-rates and fuel prices, and a ranking engine for procurement options.",
+      "wrong": "I built two projects for the same hackathon and had to pick one. OpsBrain went forward, FlowSync didn’t. Along the way the Gemini key went invalid so I switched to Groq, Google Maps billing blocked me so I hardcoded the corridors, and Cloudflare returned a 403 on my Python requests until I switched to httpx. A route screen from the old traffic app also had to go, because point-to-point routing makes no sense for shipping corridors.",
+      "stack": ["Python", "Groq", "GDELT", "httpx"],
+      "links": []
+    }
+  ]
+}
