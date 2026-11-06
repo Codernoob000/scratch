@@ -9,6 +9,7 @@ html {
   background-color: var(--paper);
   color: var(--ink);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -19,6 +20,14 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root,
+.portfolio-app {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 @media (max-width: 768px) {

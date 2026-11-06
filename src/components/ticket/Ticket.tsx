@@ -5,18 +5,22 @@ import Hint from './Hint';
 import Panel from './Panel';
 import Stub from './Stub';
 
-const STORAGE_KEY = 'ticket.v1';
+const STORAGE_KEY = 'ticket.v2';
 
 export default function Ticket(): React.ReactElement {
+  const projects = content.projects;
+  const projectIds = new Set(projects.map((p) => p.id));
+
   const [revealed, setRevealed] = useState<Set<string>>(() => {
     const saved = storage.get<string[]>(STORAGE_KEY);
-    return saved && Array.isArray(saved) ? new Set(saved) : new Set();
+    if (!saved || !Array.isArray(saved)) return new Set();
+    const valid = saved.filter((id) => projectIds.has(id));
+    return new Set(valid);
   });
 
   const [openStub, setOpenStub] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState<string>('');
 
-  const projects = content.projects;
   const unlockAfter = content.ticket.unlockAfter;
 
   const normalRevealedCount = projects.filter(

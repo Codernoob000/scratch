@@ -1,12 +1,19 @@
 .page-container {
   width: 100%;
   max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
   margin-inline: auto;
+  padding-left: 32px;
+  padding-right: 32px;
   padding-inline: 32px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .page-container {
+    padding-left: 16px;
+    padding-right: 16px;
     padding-inline: 16px;
   }
 }
@@ -233,7 +240,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px 48px;
-  max-width: 900px;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
