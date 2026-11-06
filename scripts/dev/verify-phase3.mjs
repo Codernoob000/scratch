@@ -342,3 +342,4 @@ ws.close();
 chromeProc.kill();
 server.close();
 process.exit(0);
+

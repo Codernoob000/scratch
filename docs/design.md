@@ -67,10 +67,10 @@ Hero copy:
 
 Anatomy, top to bottom:
 
-1. Header strip (mono, 12px): `ADMIT ONE` left, `HACKATHON SEASON 2026` center-ish (hide on narrow), serial `No. 0011` right. A small rotated rectangular stamp in `--accent` outline reading `SCRATCH`, slightly off-axis (-3deg). Flat, outline only.
+1. Header strip (mono, 12px): `ADMIT ONE` left, `HACKATHON SEASON 2026` center-ish (hide on narrow), serial `No. 0008` right. A small rotated rectangular stamp in `--accent` outline reading `SCRATCH`, slightly off-axis (-3deg). Flat, outline only.
 2. Perforation line: a dashed 1px line in `--line`, with a half-circle notch cut into the left and right edges using CSS masks. No shadows.
-3. Panel grid: 4 columns on desktop, 2 on mobile, 8px gap. 10 normal panels at 1 column each, golden panel spans 2 columns. Desktop panel height about 132px, mobile about 112px.
-4. Footer strip: counter on the left (`3 of 11 revealed`), "Reveal all" text button on the right.
+3. Panel grid: 4 columns on desktop, 2 on mobile, 8px gap. 7 normal panels at 1 column each, golden panel spans 1 column. Desktop panel height about 132px, mobile about 112px.
+4. Footer strip: counter on the left (`3 of 8 revealed`), "Reveal all" text button on the right.
 
 Ticket body is `--paper-2`, 1px `--ink` border, 6px radius. No box-shadow.
 

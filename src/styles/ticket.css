@@ -147,10 +147,6 @@
   }
 }
 
-.ticket-panel.golden {
-  grid-column: span 2;
-}
-
 .ticket-panel.revealed {
   border-color: var(--ink);
   cursor: pointer;

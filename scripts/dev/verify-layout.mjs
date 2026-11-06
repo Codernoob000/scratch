@@ -66,7 +66,7 @@ for (let i = 0; i < 5; i++) {
 
 const listRes = await fetch('http://127.0.0.1:9444/json');
 const pages = await listRes.json();
-const appPage = pages.find((p) => p.url.includes('4173')) || pages[0];
+const appPage = pages.find((p) => p.type === 'page' && !p.url.startsWith('devtools://')) || pages[0];
 
 const ws = new WebSocket(appPage.webSocketDebuggerUrl);
 await new Promise((resolve) => ws.onopen = resolve);
@@ -96,51 +96,55 @@ async function evalInPage(expression) {
   return res.result?.value;
 }
 
-const checkWidths = [1280, 1365, 1536, 1920];
+await evalInPage('localStorage.clear()');
+await sendCommand('Page.navigate', { url: 'http://127.0.0.1:4173' });
+await new Promise((r) => setTimeout(r, 1200));
+
+const checkWidths = [360, 768, 1280];
 for (const w of checkWidths) {
   await sendCommand('Emulation.setDeviceMetricsOverride', {
     width: w,
     height: 900,
     deviceScaleFactor: 1,
-    mobile: false,
+    mobile: w <= 768,
   });
   await new Promise((r) => setTimeout(r, 500));
 
   const result = await evalInPage(`(() => {
     const docWidth = document.documentElement.clientWidth;
     const scrollW = document.documentElement.scrollWidth;
-    const containers = Array.from(document.querySelectorAll('.page-container')).map(el => {
-      const r = el.getBoundingClientRect();
-      return {
-        tag: el.parentElement.tagName.toLowerCase() + (el.parentElement.className ? '.' + el.parentElement.className : ''),
-        left: Math.round(r.left),
-        right: Math.round(r.right),
-        width: Math.round(r.width),
-        leftMargin: Math.round(r.left),
-        rightMargin: Math.round(docWidth - r.right),
-        centered: Math.abs(Math.round(r.left) - Math.round(docWidth - r.right)) <= 1
-      };
-    });
-
-    const overflowing = [];
-    document.querySelectorAll('*').forEach(el => {
-      const r = el.getBoundingClientRect();
-      if (r.right > docWidth + 1) {
-        overflowing.push({
-          tag: el.tagName.toLowerCase(),
-          className: el.className,
-          right: Math.round(r.right),
-          overflowBy: Math.round(r.right - docWidth)
-        });
-      }
-    });
-
+    
+    // Ticket checks
+    const ticketGrid = document.querySelector('.ticket-grid');
+    const ticketPanels = Array.from(document.querySelectorAll('.ticket-panel'));
+    const goldenPanel = document.querySelector('.ticket-panel.golden');
+    const ticketSerial = document.querySelector('.ticket-serial')?.textContent.trim();
+    const ticketCounter = document.querySelector('.ticket-counter')?.textContent.trim();
+    
+    // Projects section checks
+    const projectsGrid = document.querySelector('.projects-grid');
+    const projectCards = Array.from(document.querySelectorAll('.project-card'));
+    const lastProjectCard = projectCards[projectCards.length - 1];
+    const isGoldenLast = Boolean(lastProjectCard.querySelector('.project-badge-shelved'));
+    
     return {
-      clientWidth: docWidth,
+      viewportWidth: docWidth,
       scrollWidth: scrollW,
       hasOverflow: scrollW > docWidth,
-      containers,
-      overflowingElements: overflowing.slice(0, 5)
+      ticket: {
+        serial: ticketSerial,
+        initialCounter: ticketCounter,
+        totalPanels: ticketPanels.length,
+        gridColumns: getComputedStyle(ticketGrid).gridTemplateColumns.split(' ').length,
+        goldenColSpan: getComputedStyle(goldenPanel).gridColumn,
+      },
+      projects: {
+        totalCards: projectCards.length,
+        gridColumns: getComputedStyle(projectsGrid).gridTemplateColumns.split(' ').length,
+        goldenCardIsLast: isGoldenLast,
+        goldenCardTitle: lastProjectCard.querySelector('.project-title')?.textContent.trim(),
+        goldenCardColSpan: getComputedStyle(lastProjectCard).gridColumn
+      }
     };
   })()`);
 

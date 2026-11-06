@@ -42,7 +42,7 @@ npm run check:content
 
 ## How the ticket works
 
-- 10 regular panels and 1 golden panel.
+- 7 regular panels and 1 golden panel.
 - Scratch with mouse or touch drag to erase the foil layer.
 - At 55% cleared, the panel auto-reveals and opens its project details stub below the ticket.
 - Keyboard accessible: focus any panel and press Enter or Space to reveal it.
@@ -59,3 +59,4 @@ The site deploys statically to AWS Amplify Hosting connected to the GitHub repos
 3. Pre-build sets Node 20 and installs dependencies with `npm ci`.
 4. Build phase runs `npm run check:content` and `npm run build`.
 5. Output directory is `dist/`, served globally via CloudFront.
+

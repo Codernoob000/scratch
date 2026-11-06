@@ -18,12 +18,12 @@ Short and testable. If a line here can't be checked by opening the site, it does
 - FR-3. Every anchor scrolls to its section and updates the URL hash (`#about`, `#skills`, `#projects`).
 
 ### Ticket
-- FR-4. The ticket renders 11 panels from `content.json`: 10 normal, 1 with `golden: true`.
+- FR-4. The ticket renders 8 panels from `content.json`: 7 normal, 1 with `golden: true`.
 - FR-5. Each panel is covered by a foil layer drawn on a canvas. Pointer drag (mouse, touch, pen) erases the foil under the pointer.
 - FR-6. When at least 55% of a panel's foil is erased, the rest fades out (250 ms) and the panel is marked revealed.
 - FR-7. Revealing a panel opens its stub below the ticket. Clicking a revealed panel reopens its stub.
 - FR-8. The golden panel is locked until 5 non-golden panels are revealed. While locked it shows a flat label "scratch 5 first · N of 5" and ignores pointer input. When it unlocks, the label changes to "unlocked" and the foil becomes scratchable.
-- FR-9. A visible hint sits above the ticket (coin icon, one line of text). It pulses gently until the first scratch, then turns into a counter "N of 11".
+- FR-9. A visible hint sits above the ticket (coin icon, one line of text). It pulses gently until the first scratch, then turns into a counter "N of 8".
 - FR-10. "Reveal all" button under the ticket reveals everything, golden included, and opens no stub.
 - FR-11. Every panel is a focusable button. Enter or Space reveals it and opens its stub. Locked golden panel is `aria-disabled`.
 - FR-12. Revealed state is saved to localStorage (`ticket.v1`) inside try/catch. If storage fails, the ticket still works for the session.
@@ -32,7 +32,7 @@ Short and testable. If a line here can't be checked by opening the site, it does
 ### Content sections
 - FR-14. About: photo, 3 short paragraphs, links (GitHub, LinkedIn, email, résumé).
 - FR-15. Skills: grouped lists from `content.json`. Plain text, no progress bars, no percentages.
-- FR-16. Projects: all 11 projects as plain cards (title, event, what, what went wrong, stack, links). This section does not depend on the ticket.
+- FR-16. Projects: all 8 projects as plain cards (title, event, what, what went wrong, stack, links). This section does not depend on the ticket.
 - FR-17. Links with an empty URL are not rendered.
 
 ### Build checks

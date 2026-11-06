@@ -32,11 +32,11 @@ The old portfolio (rithvik-os on Vercel) is already public, so it can't be enter
 ## The feature: scratch-off ticket
 
 - Lives in the hero, directly under the name. Can't be missed.
-- 10 normal panels plus 1 locked panel (the "one I shelved").
+- 7 normal panels plus 1 locked panel (the "one I shelved").
 - Scratch with mouse or finger. A panel clears itself once about 55% is scratched.
 - Revealing a panel opens its "stub" under the ticket: title, event, what it is, what went wrong, stack, links.
 - The locked panel unlocks after 5 other panels are revealed. Its foil is the only terracotta thing on the ticket.
-- Visible hint above the ticket with a small coin icon: "Scratch the ticket. Each panel is something I built. One is hiding." Once the first scratch happens, the hint becomes a counter ("3 of 11").
+- Visible hint above the ticket with a small coin icon: "Scratch the ticket. Each panel is something I built. One is hiding." Once the first scratch happens, the hint becomes a counter ("3 of 8").
 - Never required. A "Reveal all" button sits under the ticket, panels work with the keyboard, and the Projects section below lists every project as plain text.
 - Progress is remembered in localStorage so a refresh doesn't wipe it.
 
