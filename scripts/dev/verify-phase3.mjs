@@ -1,3 +1,4 @@
+// Checks scratch-off interaction, procedural foil drawing, persistence, and golden panel unlocking.
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -65,7 +66,6 @@ for (let i = 0; i < 5; i++) {
 
 const listRes = await fetch('http://127.0.0.1:9444/json');
 const pages = await listRes.json();
-console.log('Open pages:', pages.map(p => ({ title: p.title, url: p.url })));
 const appPage = pages.find((p) => p.type === 'page' && !p.url.startsWith('devtools://')) || pages[0];
 
 const ws = new WebSocket(appPage.webSocketDebuggerUrl);
